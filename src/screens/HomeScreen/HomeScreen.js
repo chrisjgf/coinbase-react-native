@@ -1,5 +1,10 @@
 import React, {Fragment} from 'react';
-import {SafeAreaView, ActivityIndicator, FlatList, Text} from 'react-native';
+import {
+  SafeAreaView,
+  ActivityIndicator,
+  FlatList,
+  AsyncStorage,
+} from 'react-native';
 import styles from './HomeScreen.style.js';
 import DefaultCell from '../../components/DefaultCell/DefaultCell';
 import CoinService from '../../services/CoinService';
@@ -20,29 +25,39 @@ class HomeScreen extends React.Component {
   }
 
   // Fetch products
-  fetchProducts() {
+  fetchProducts = async () => {
     this.api
       .fetch('/products')
       .then(response => {
         const data = response.map(obj => {
           return {coin: obj.id};
         });
-        // console.log(data);
-        console.log(response);
-        this.setState({data, isLoading: false});
+        this.setState({data, isLoading: false}, () => {
+          AsyncStorage.setItem('allCoins', JSON.stringify(data));
+        });
       })
       .catch(error => {
-        console.log(error);
-        alert('ERROR');
+        this.handleOfflineResponse().then(data => {
+          this.setState({data: JSON.parse(data), isLoading: false});
+        });
       });
-  }
+  };
 
-  handleCoinSelection() {
+  handleOfflineResponse = async () => {
+    try {
+      return (await AsyncStorage.getItem('allCoins')) || [];
+    } catch (error) {
+      console.log('ERROR', error);
+      return false;
+    }
+  };
+
+  handleCoinSelection = () => {
     // console.log(this.props);
     this.props.navigation.push('Product', {
       itemId: 'BTC-USD',
     });
-  }
+  };
 
   render() {
     const {isLoading, data} = this.state;
