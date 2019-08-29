@@ -2,12 +2,17 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   productCell: {
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    width: '100%',
-    height: 50,
-    backgroundColor: 'blue',
     display: 'flex',
-    marginBottom: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  productText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'black',
   },
 });
