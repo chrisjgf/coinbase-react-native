@@ -9,6 +9,7 @@
 import React from 'react';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import HomeScreen from './src/screens/HomeScreen/HomeScreen';
+import ProductScreen from './src/screens/ProductScreen/ProductScreen';
 
 const AppNavigator = createStackNavigator(
   {
@@ -18,8 +19,8 @@ const AppNavigator = createStackNavigator(
         title: 'Coinbase',
       },
     },
-    Home2: {
-      screen: HomeScreen,
+    Product: {
+      screen: ProductScreen,
       navigationOptions: {
         title: 'Product',
       },

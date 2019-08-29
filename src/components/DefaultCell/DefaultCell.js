@@ -4,9 +4,9 @@ import styles from './DefaultCell.style.js';
 
 import PropTypes from 'prop-types';
 
-const DefaultCell = ({coin, action}) => {
+const DefaultCell = ({coin, onPress}) => {
   return (
-    <TouchableHighlight onPress={action} style={styles.defaultCell}>
+    <TouchableHighlight onPress={onPress} style={styles.defaultCell}>
       <View>
         <Text style={styles.defaultText}>{coin}</Text>
       </View>
