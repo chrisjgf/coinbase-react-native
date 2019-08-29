@@ -5,6 +5,7 @@ import styles from './ProductInfo.style';
 import PropTypes from 'prop-types';
 
 const ProductInfo = ({data}) => {
+  // Return 2d array to extract easily from object
   const getData2dArray = () => {
     if (data == null || undefined) {
       return [];
@@ -24,6 +25,7 @@ const ProductInfo = ({data}) => {
             <Text style={styles.productText}>{item.data[1]}</Text>
           </View>
         )}
+        keyExtractor={(item, index) => 'key' + index}
       />
     </View>
   );

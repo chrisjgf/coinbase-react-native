@@ -15,7 +15,7 @@ class ProductScreen extends React.Component {
     this.fetchProductDetails();
   }
 
-  // Fetch products
+  // Fetch product details
   fetchProductDetails = async () => {
     const itemId = this.props.navigation.getParam('itemId');
     console.log('ITEMID', itemId);

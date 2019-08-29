@@ -43,6 +43,7 @@ class HomeScreen extends React.Component {
       });
   };
 
+  // Handle offline response and serve local data if available
   handleOfflineResponse = async () => {
     try {
       return (await AsyncStorage.getItem('allCoins')) || [];
@@ -52,6 +53,7 @@ class HomeScreen extends React.Component {
     }
   };
 
+  // Pass itemId through to query on the next view
   handleCoinSelection = itemId => {
     this.props.navigation.push('Product', {
       itemId: itemId,
@@ -77,6 +79,7 @@ class HomeScreen extends React.Component {
                 onPress={this.handleCoinSelection}
               />
             )}
+            keyExtractor={(item, index) => 'key' + index}
           />
         )}
       </SafeAreaView>
