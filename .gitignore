@@ -20,6 +20,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+ios/CoinbaseRN.xcworkspace/xcshareddata/
 project.xcworkspace
 
 # Android/IntelliJ
@@ -64,3 +65,4 @@ buck-out/
 .gitattributes
 .prettierrc.js
 .watchmanconfig
+
