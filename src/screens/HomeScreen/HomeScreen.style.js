@@ -6,4 +6,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'black',
   },
+  activityIndicator: {
+    marginTop: 40,
+  },
 });
