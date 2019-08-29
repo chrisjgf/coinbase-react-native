@@ -18,15 +18,13 @@ class ProductScreen extends React.Component {
   // Fetch product details
   fetchProductDetails = async () => {
     const itemId = this.props.navigation.getParam('itemId');
-    console.log('ITEMID', itemId);
     this.api
       .fetch('/products/' + itemId)
       .then(response => {
         this.setState({data: response, isLoading: false});
       })
       .catch(error => {
-        console.log(error);
-        alert('ERROR Product Screen');
+        this.setState({data: null, isLoading: false});
       });
   };
 
@@ -41,7 +39,7 @@ class ProductScreen extends React.Component {
             color="#0000ff"
           />
         ) : (
-          <ProductInfo data={data} />
+          <ProductInfo data={data} isLoading />
         )}
       </SafeAreaView>
     );

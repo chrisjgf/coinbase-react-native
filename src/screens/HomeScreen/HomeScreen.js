@@ -10,14 +10,10 @@ import DefaultCell from '../../components/DefaultCell/DefaultCell';
 import CoinService from '../../services/CoinService';
 
 class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-    this.state = {
-      isLoading: true,
-      data: [{coin: 'Coin1'}, {coin: 'Coin2'}],
-    };
-  }
+  state = {
+    isLoading: true,
+    data: [{coin: 'Coin1'}, {coin: 'Coin2'}],
+  };
 
   componentDidMount() {
     this.api = new CoinService();

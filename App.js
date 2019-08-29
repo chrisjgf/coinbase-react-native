@@ -16,7 +16,7 @@ const AppNavigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        title: 'Coinbase',
+        title: 'Coinbase Products',
       },
     },
     Product: {

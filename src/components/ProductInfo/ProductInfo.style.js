@@ -15,4 +15,10 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'black',
   },
+  errorText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'black',
+    marginTop: 20,
+  },
 });
