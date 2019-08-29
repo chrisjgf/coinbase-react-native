@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 
 const ProductInfo = ({data}) => {
   const getData2dArray = () => {
+    if (data == null || undefined) {
+      return [];
+    }
     const keys = Object.keys(data);
     return keys.map(k => {
       return {data: [k, data[k]]};
     });
   };
-  // FIXME: - This is not displaying correctly ...
   return (
     <View>
       <FlatList
@@ -27,8 +29,12 @@ const ProductInfo = ({data}) => {
   );
 };
 
+ProductInfo.defaultProps = {
+  data: null,
+};
+
 ProductInfo.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };
 
 export default ProductInfo;

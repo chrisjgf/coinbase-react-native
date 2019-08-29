@@ -52,10 +52,9 @@ class HomeScreen extends React.Component {
     }
   };
 
-  handleCoinSelection = () => {
-    // console.log(this.props);
+  handleCoinSelection = itemId => {
     this.props.navigation.push('Product', {
-      itemId: 'BTC-USD',
+      itemId: itemId,
     });
   };
 
@@ -75,7 +74,7 @@ class HomeScreen extends React.Component {
             renderItem={({item}) => (
               <DefaultCell
                 coin={item.coin}
-                onPress={() => this.handleCoinSelection()}
+                onPress={this.handleCoinSelection}
               />
             )}
           />
