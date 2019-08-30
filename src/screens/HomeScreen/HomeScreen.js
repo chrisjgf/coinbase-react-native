@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {SafeAreaView, ActivityIndicator, FlatList} from 'react-native';
+import {SafeAreaView, ActivityIndicator, FlatList, Alert} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './HomeScreen.style.js';
 import DefaultCell from '../../components/DefaultCell/DefaultCell';
@@ -29,20 +29,25 @@ class HomeScreen extends React.Component {
         });
       })
       .catch(error => {
-        this.handleOfflineResponse().then(data => {
-          this.setState({data: JSON.parse(data), isLoading: false});
-        });
+        this.handleOfflineResponse()
+          .then(data => {
+            const parsedData = JSON.parse(data);
+            if (parsedData === null) {
+              throw new Error();
+            }
+            this.setState({data: parsedData, isLoading: false});
+          })
+          .catch(() => {
+            this.setState({data: null, isLoading: false}, () => {
+              Alert.alert('An error occurred. Please try again later.');
+            });
+          });
       });
   };
 
   // Handle offline response and serve local data if available
   handleOfflineResponse = async () => {
-    try {
-      return (await AsyncStorage.getItem('allCoins')) || [];
-    } catch (error) {
-      console.log('ERROR', error);
-      return false;
-    }
+    return await AsyncStorage.getItem('allCoins');
   };
 
   // Pass itemId through to query on the next view
