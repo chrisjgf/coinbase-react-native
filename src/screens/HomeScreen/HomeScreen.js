@@ -1,10 +1,6 @@
 import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  ActivityIndicator,
-  FlatList,
-  AsyncStorage,
-} from 'react-native';
+import {SafeAreaView, ActivityIndicator, FlatList} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import styles from './HomeScreen.style.js';
 import DefaultCell from '../../components/DefaultCell/DefaultCell';
 import CoinService from '../../services/CoinService';
@@ -12,7 +8,7 @@ import CoinService from '../../services/CoinService';
 class HomeScreen extends React.Component {
   state = {
     isLoading: true,
-    data: [{coin: 'Coin1'}, {coin: 'Coin2'}],
+    data: null,
   };
 
   componentDidMount() {
@@ -26,7 +22,7 @@ class HomeScreen extends React.Component {
       .fetch('/products')
       .then(response => {
         const data = response.map(obj => {
-          return {coin: obj.id};
+          return {currencyPair: obj.id};
         });
         this.setState({data, isLoading: false}, () => {
           AsyncStorage.setItem('allCoins', JSON.stringify(data));
@@ -71,8 +67,8 @@ class HomeScreen extends React.Component {
             data={data}
             renderItem={({item}) => (
               <DefaultCell
-                coin={item.coin}
-                onPress={this.handleCoinSelection}
+                currencyPair={item.currencyPair}
+                onPressHandler={this.handleCoinSelection}
               />
             )}
             keyExtractor={(item, index) => 'key' + index}

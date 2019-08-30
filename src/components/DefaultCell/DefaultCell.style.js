@@ -6,7 +6,8 @@ export default StyleSheet.create({
     paddingVertical: 10,
     height: 50,
     width: '100%',
-    backgroundColor: '#eee',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgrey',
   },
   defaultText: {
     fontSize: 20,

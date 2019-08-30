@@ -4,25 +4,25 @@ import styles from './DefaultCell.style.js';
 
 import PropTypes from 'prop-types';
 
-const DefaultCell = ({coin, onPress}) => {
+const DefaultCell = ({currencyPair, onPressHandler}) => {
   return (
     <TouchableHighlight
-      onPress={() => onPress(coin)}
+      onPress={() => onPressHandler(currencyPair)}
       style={styles.defaultCell}>
       <View>
-        <Text style={styles.defaultText}>{coin}</Text>
+        <Text style={styles.defaultText}>{currencyPair}</Text>
       </View>
     </TouchableHighlight>
   );
 };
 
 DefaultCell.defaultProps = {
-  coin: '-',
+  currencyPair: '-',
 };
 
 DefaultCell.propTypes = {
-  coin: PropTypes.string,
-  onPress: PropTypes.func.isRequired,
+  currencyPair: PropTypes.string,
+  onPressHandler: PropTypes.func.isRequired,
 };
 
 export default DefaultCell;
